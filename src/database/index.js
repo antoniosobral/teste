@@ -20,13 +20,10 @@ class Database {
   }
 
   mongo() {
-    this.mongoConnection = mongoose.connect(
-      'mongodb://localhost:27017/senhas',
-      {
-        userNewUrlParser: true,
-        userFindAndModify: true,
-      }
-    );
+    this.mongoConnection = mongoose.connect(process.env.MONGO_URL, {
+      userNewUrlParser: true,
+      userFindAndModify: true,
+    });
   }
 }
 export default new Database();
