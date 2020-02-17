@@ -37,12 +37,15 @@ class PasswordController {
   }
 
   async update(req, res) {
-    const { place } = req.query;
+    const { place, id, called_by } = req.query;
+
+    console.log(called_by);
 
     const password = await Password.findByIdAndUpdate(
-      req.query.id,
+      id,
       {
         called: true,
+        called_by,
         place,
       },
       { new: true }
