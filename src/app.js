@@ -1,11 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
+import { join } from 'path';
 import cors from 'cors';
 import http from 'http';
 import io from 'socket.io';
 import routes from './routes';
 import './database';
-import { join } from 'path';
 
 class App {
   constructor() {
