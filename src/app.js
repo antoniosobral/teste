@@ -24,8 +24,21 @@ class App {
     this.io.on('connection', socket => {
       const { user_id } = socket.handshake.query;
       this.connectedUsers[user_id] = socket.id;
-      console.log(this.connectedUsers);
-      console.log(socket.id);
+      socket.on('updatePasswords', data => {
+        this.io.emit('updatePasswords', data);
+      });
+
+      socket.on('lastPasswordTv', pass => {
+        this.io.emit('lastPasswordTv', pass);
+      });
+      socket.on('updateRecall', data => {
+        this.io.emit('updateRecall', data);
+      });
+      socket.on('newPassword', password => {
+        this.io.emit('newPassword', password);
+      });
+
+      console.log(`user connected: ${socket.id}`);
 
       socket.on('disconnect', () => {
         delete this.connectedUsers[user_id];

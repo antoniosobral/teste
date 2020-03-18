@@ -14,13 +14,29 @@ class PasswordController {
     const lastOfDay = passwords.length + 1;
 
     const { queue } = req.body;
-    const formatedPassword = queue.concat('-', lastOfDay);
 
-    const pass = { password_type: formatedPassword };
+    let prefix = '';
+
+    if (queue === 'comum') {
+      prefix = 'C';
+    }
+    if (queue === 'priority') {
+      prefix = 'P';
+    }
+    if (queue === 'results') {
+      prefix = 'R';
+    }
+    if (queue === 'pendencies') {
+      prefix = 'M';
+    }
+    if (queue === 'budgets') {
+      prefix = 'O';
+    }
+    const formatedPassword = prefix.concat('-', lastOfDay);
+
+    const pass = { password_type: formatedPassword, queue };
 
     const password = await Password.create(pass);
-
-    req.io.emit('broadcast', password);
 
     return res.json(password);
   }
@@ -39,8 +55,6 @@ class PasswordController {
   async update(req, res) {
     const { place, id, called_by } = req.query;
 
-    console.log(called_by);
-
     const password = await Password.findByIdAndUpdate(
       id,
       {
@@ -50,9 +64,7 @@ class PasswordController {
       },
       { new: true }
     );
-
-    req.io.emit('sendLastPassword', password);
-
+    req.io.emit('lastPasswordTv', password);
     return res.json(password);
   }
 }

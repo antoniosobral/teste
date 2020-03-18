@@ -5,6 +5,8 @@ import databaseConfig from '../config/database';
 
 import User from '../app/models/User';
 
+require('dotenv/config');
+
 const models = [User];
 
 class Database {

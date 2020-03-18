@@ -6,6 +6,11 @@ const PasswordSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    queue: {
+      type: String,
+      required: true,
+      default: '-',
+    },
     called_by: {
       type: String,
       required: true,
