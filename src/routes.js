@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { join } from 'path';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionControler';
 import PasswordController from './app/controllers/PasswordController';

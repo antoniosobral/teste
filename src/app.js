@@ -5,6 +5,7 @@ import http from 'http';
 import io from 'socket.io';
 import routes from './routes';
 import './database';
+import { join } from 'path';
 
 class App {
   constructor() {
@@ -54,6 +55,9 @@ class App {
       req.io = this.io;
       req.connectedUsers = this.connectedUsers;
       next();
+    });
+    this.app.get('*', (req, res) => {
+      res.sendFile(join(__dirname, 'build', 'index.html'));
     });
   }
 
