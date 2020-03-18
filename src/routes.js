@@ -10,6 +10,8 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
+routes.get('/', (req, res) => res.send('ok'));
+
 routes.use(authMiddleware);
 routes.post('/passwords', PasswordController.store);
 routes.get('/passwords', PasswordController.index);
