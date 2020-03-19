@@ -56,8 +56,9 @@ class App {
       req.connectedUsers = this.connectedUsers;
       next();
     });
+    this.app.use(express.static('./public'));
     this.app.get('*', (req, res) => {
-      res.sendFile(join(__dirname, 'build', 'index.html'));
+      res.sendfile('./public/main.html');
     });
   }
 
