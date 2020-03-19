@@ -56,8 +56,11 @@ class App {
       req.connectedUsers = this.connectedUsers;
       next();
     });
-    this.app.use(express.static(`${__dirname}/build/`));
+    this.app.use(express.static(`${__dirname}/build/index.html`));
     this.app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'build/index.html'));
+    });
+    this.app.post('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'build/index.html'));
     });
   }
