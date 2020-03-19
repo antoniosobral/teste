@@ -56,9 +56,9 @@ class App {
       req.connectedUsers = this.connectedUsers;
       next();
     });
-    this.app.use(express.static(`${__dirname}/dist/BACKENDSENHAS`));
+    this.app.use(express.static(`${__dirname}/build/`));
     this.app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'dist/BACKENDSENHAS/index.html'));
+      res.sendFile(path.join(__dirname, 'build/index.html'));
     });
   }
 
