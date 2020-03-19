@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import { resolve } from 'path';
+
 import cors from 'cors';
 import http from 'http';
 import io from 'socket.io';
@@ -55,13 +55,6 @@ class App {
       req.io = this.io;
       req.connectedUsers = this.connectedUsers;
       next();
-    });
-    this.app.use(express.static(`${__dirname}/build/index.html`));
-    this.app.get('*', (req, res) => {
-      res.sendFile(resolve('index.html'));
-    });
-    this.app.post('*', (req, res) => {
-      res.sendFile(resolve('index.html'));
     });
   }
 
