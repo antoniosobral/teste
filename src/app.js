@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import { join } from 'path';
+import { join, path } from 'path';
 import cors from 'cors';
 import http from 'http';
 import io from 'socket.io';
@@ -56,9 +56,9 @@ class App {
       req.connectedUsers = this.connectedUsers;
       next();
     });
-    this.app.use(express.static('./public'));
+    this.app.use(express.static(`${__dirname}/dist/BACKENDSENHAS`));
     this.app.get('*', (req, res) => {
-      res.sendfile('./public/main.html');
+      res.sendFile(path.join(__dirname, 'dist/BACKENDSENHAS/index.html'));
     });
   }
 
