@@ -58,10 +58,10 @@ class App {
     });
     this.app.use(express.static(`${__dirname}/build/index.html`));
     this.app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'build/index.html'));
+      res.sendFile(path.resolve('dist', 'index.html'));
     });
     this.app.post('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'build/index.html'));
+      res.sendFile(path.resolve('dist', 'index.html'));
     });
   }
 
