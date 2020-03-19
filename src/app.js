@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import { join, path } from 'path';
+import { path } from 'path';
 import cors from 'cors';
 import http from 'http';
 import io from 'socket.io';
