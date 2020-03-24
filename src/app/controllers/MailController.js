@@ -7,7 +7,7 @@ class MailController {
     let destinatario = '';
 
     if (subject === 'DÚVIDA') {
-      destinatario = 'antonioosobral@gmail.com';
+      destinatario = 'antoniosobral@poli.ufrj.br';
     } else {
       destinatario = 'direcaosobral@gmail.com';
     }
