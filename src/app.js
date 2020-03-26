@@ -1,14 +1,19 @@
 import 'dotenv/config';
 import express from 'express';
-
-import cors from 'cors';
 import http from 'http';
+import fs from 'fs';
+import cors from 'cors';
 import io from 'socket.io';
 import routes from './routes';
 import './database';
 
 class App {
   constructor() {
+    this.options = {
+      key: fs.readFileSync('certificatekey.key'),
+      cert: fs.readFileSync('certificate.crt'),
+    };
+
     this.app = express();
 
     this.server = http.Server(this.app);
