@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import http from 'http';
-import fs from 'fs';
 import cors from 'cors';
 import io from 'socket.io';
 import routes from './routes';
@@ -9,11 +8,6 @@ import './database';
 
 class App {
   constructor() {
-    this.options = {
-      key: fs.readFileSync('certificatekey.key'),
-      cert: fs.readFileSync('certificate.crt'),
-    };
-
     this.app = express();
 
     this.server = http.Server(this.app);
@@ -54,7 +48,11 @@ class App {
   }
 
   middlewares() {
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: 'https://labsobral.com.br',
+      })
+    );
     this.app.use(express.json());
     this.app.use((req, res, next) => {
       req.io = this.io;

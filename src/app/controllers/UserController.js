@@ -20,6 +20,12 @@ class UserController {
     });
   }
 
+  async index(req, res) {
+    const users = await User.findAll();
+
+    return users;
+  }
+
   async update(req, res) {
     const { user_id } = req.body;
 
