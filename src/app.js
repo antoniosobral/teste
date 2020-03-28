@@ -48,6 +48,12 @@ class App {
   }
 
   middlewares() {
+    this.app.use(
+      cors({
+        origin: 'https://fila.labsobral.com.br',
+      })
+    );
+    this.app.use(express.json());
     this.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Headers', '*');
@@ -60,12 +66,6 @@ class App {
       }
       next();
     });
-    this.app.use(
-      cors({
-        origin: 'https://fila.labsobral.com.br/',
-      })
-    );
-    this.app.use(express.json());
     this.app.use((req, res, next) => {
       req.io = this.io;
       req.connectedUsers = this.connectedUsers;
