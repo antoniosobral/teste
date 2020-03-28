@@ -1,12 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
 import http from 'http';
-import fs from 'fs';
 import https from 'https';
 import cors from 'cors';
 import io from 'socket.io';
 import routes from './routes';
 import './database';
+
+const fs = require('fs');
 
 class App {
   constructor() {
@@ -21,7 +22,7 @@ class App {
       'utf8'
     );
     this.ca = fs.readFileSync(
-      '/etc/letsencrypt/live/api.labsobral.com.br/fullchain.pem',
+      '/etc/letsencrypt/live/api.labsobral.com.br/chain.pem',
       'utf8'
     );
 
@@ -31,7 +32,7 @@ class App {
       ca: this.ca,
     };
 
-    this.server = https.createServer(this.credentials, this.app);
+    this.server = https.Server(this.credentials, this.app);
 
     this.socket();
 
