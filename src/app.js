@@ -1,14 +1,12 @@
 import 'dotenv/config';
 import express from 'express';
+import http from 'http';
+import * as fs from 'fs';
+import https from 'https';
 import cors from 'cors';
 import io from 'socket.io';
 import routes from './routes';
 import './database';
-
-const http = require('http');
-const https = require('https');
-
-const fs = require('fs');
 
 class App {
   constructor() {
