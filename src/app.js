@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import http from 'http';
-import https from 'https';
+
 import cors from 'cors';
 import io from 'socket.io';
 import routes from './routes';
