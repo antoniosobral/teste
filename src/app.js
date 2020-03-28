@@ -31,7 +31,7 @@ class App {
       ca: this.ca,
     };
 
-    this.server = https.Server(this.credentials, this.app);
+    this.server = https.createServer(this.credentials, this.app);
 
     this.socket();
 
