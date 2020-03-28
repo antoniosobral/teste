@@ -48,24 +48,9 @@ class App {
   }
 
   middlewares() {
-    this.app.use(
-      cors({
-        origin: 'https://fila.labsobral.com.br',
-      })
-    );
+    this.app.use(cors());
     this.app.use(express.json());
-    this.app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Headers', '*');
-      if (req.method === 'OPTIONS') {
-        res.header(
-          'Access-Control-Allow-Methods',
-          'PUT, POST, PATCH, DELETE, GET'
-        );
-        return res.status(200).json({});
-      }
-      next();
-    });
+
     this.app.use((req, res, next) => {
       req.io = this.io;
       req.connectedUsers = this.connectedUsers;
