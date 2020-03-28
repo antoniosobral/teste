@@ -21,7 +21,7 @@ class App {
       'utf8'
     );
     this.ca = fs.readFileSync(
-      '/etc/letsencrypt/live/api.labsobral.com.br/chain.pem',
+      '/etc/letsencrypt/live/api.labsobral.com.br/fullchain.pem',
       'utf8'
     );
 
