@@ -60,7 +60,7 @@ class App {
       }
       next();
     });
-    this.app.use(cors());
+    // this.app.use(cors());
     this.app.use(express.json());
     this.app.use((req, res, next) => {
       req.io = this.io;
