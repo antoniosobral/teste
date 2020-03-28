@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import proxy from 'http-proxy-middleware';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import http from 'http';
 import cors from 'cors';
 import io from 'socket.io';
@@ -49,6 +49,12 @@ class App {
   }
 
   middlewares() {
+    this.app.use(
+      createProxyMiddleware('/sessions', {
+        target: 'https://labsobral.com.br',
+        changeOrigin: true,
+      })
+    );
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use((req, res, next) => {
