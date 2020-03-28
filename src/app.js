@@ -51,7 +51,7 @@ class App {
   middlewares() {
     this.app.use(
       createProxyMiddleware('/sessions', {
-        target: 'https://labsobral.com.br',
+        target: 'https://fila.labsobral.com.br',
         changeOrigin: true,
       })
     );
