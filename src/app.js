@@ -49,12 +49,6 @@ class App {
   }
 
   middlewares() {
-    this.app.use(
-      proxy('/', {
-        target: 'https://fila.labsobral.com.br',
-        changeOrigin: true,
-      })
-    );
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use((req, res, next) => {
