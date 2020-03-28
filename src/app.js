@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import express from 'express';
-import { createProxyMiddleware } from 'http-proxy-middleware';
 import http from 'http';
 import cors from 'cors';
 import io from 'socket.io';
@@ -49,12 +48,21 @@ class App {
   }
 
   middlewares() {
-    this.app.use(
-      createProxyMiddleware('/sessions', {
-        target: 'https://fila.labsobral.com.br',
-        changeOrigin: true,
-      })
-    );
+    this.app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, COntent-Type, Accept, Authorization'
+      );
+      if (req.method === 'OPTIONS') {
+        res.header(
+          'Access-Control-Allow-Methods',
+          'PUT, POST, PATCH, DELETE, GET'
+        );
+        return res.status(200).json({});
+      }
+      next();
+    });
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use((req, res, next) => {
