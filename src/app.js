@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import proxy from 'http-proxy-middleware';
 import http from 'http';
 import cors from 'cors';
 import io from 'socket.io';
@@ -49,10 +50,12 @@ class App {
 
   middlewares() {
     this.app.use(
-      cors({
-        origin: 'https://labsobral.com.br/',
+      proxy('/', {
+        target: 'https://fila.labsobral.com.br',
+        changeOrigin: true,
       })
     );
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use((req, res, next) => {
       req.io = this.io;
