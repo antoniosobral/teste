@@ -50,7 +50,7 @@ class App {
   middlewares() {
     this.app.use(
       cors({
-        origin: 'https://fila.labsobral.com.br/',
+        origin: 'https://labsobral.com.br/',
       })
     );
     this.app.use(express.json());
