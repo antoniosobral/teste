@@ -1,6 +1,6 @@
 export default {
-  name: 'www.labsobral.com.br',
-  host: 'br968.hostgator.com.br',
+  name: 'labsobral.com.br',
+  host: 'labsobral.com.br',
   port: 465,
   secure: true,
   auth: {

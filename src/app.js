@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
-import http from 'http';
-
+import https from 'https';
+import * as fs from 'fs';
 import cors from 'cors';
 import io from 'socket.io';
 import routes from './routes';
@@ -11,7 +11,26 @@ class App {
   constructor() {
     this.app = express();
 
-    this.server = http.Server(this.app);
+    this.privateKey = fs.readFileSync(
+      '/etc/letsencrypt/live/api.labsobral.com.br/privkey.pem',
+      'utf8'
+    );
+    this.certificate = fs.readFileSync(
+      '/etc/letsencrypt/live/api.labsobral.com.br/cert.pem',
+      'utf8'
+    );
+    this.ca = fs.readFileSync(
+      '/etc/letsencrypt/live/api.labsobral.com.br/chain.pem',
+      'utf8'
+    );
+
+    this.credentials = {
+      key: this.privateKey,
+      cert: this.certificate,
+      ca: this.ca,
+    };
+
+    this.server = https.Server(this.credentials, this.app);
 
     this.socket();
 
